@@ -15,17 +15,10 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.DBConnection;
 
-/**
- *
- * @author nurcan
- */
 public class birimler extends javax.swing.JFrame {
 
-    /**
-     * Creates new form birimler
-     */
     DefaultTableModel model;
-
+ 
     public birimler() {
         initComponents();
         tabloyudoldur();

@@ -34,19 +34,6 @@ public class BelediyeYonetimSistemi {
             }
         }); */
         
-        
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new istekListesiGuncelleme().setVisible(true);
-            }
-        });
-        
-        
-         java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new istekListesi().setVisible(true);
-            }
-        });
-        
+      
     }
 }

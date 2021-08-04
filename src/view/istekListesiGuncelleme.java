@@ -1,10 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
 package view;
+
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.Font;
@@ -134,7 +130,7 @@ public class istekListesiGuncelleme extends javax.swing.JFrame {
         }
 
         int sayacistektipi = 0;
-        int[] istektiplerii = new int[istektipilistesatirsayisii]; //birimler istek listesi kadar değil mal
+        int[] istektiplerii = new int[istektipilistesatirsayisii];
         String[] istektipiadlari = new String[istektipilistesatirsayisii];
         try {
             Statement st = this.getDb().connect().createStatement();
@@ -184,7 +180,7 @@ public class istekListesiGuncelleme extends javax.swing.JFrame {
         }
 
         int sayac2 = 0;
-        int[] birimler = new int[birimlistesatirsayisii]; //birimler istek listesi kadar değil mal
+        int[] birimler = new int[birimlistesatirsayisii];
         String[] birimadlari = new String[birimlistesatirsayisii];
         try {
             Statement st = this.getDb().connect().createStatement();
@@ -234,7 +230,7 @@ public class istekListesiGuncelleme extends javax.swing.JFrame {
         }
 
         int mah = 0;
-        int[] mahalleler = new int[mahallelistesatirsayisii]; //birimler istek listesi kadar değil mal
+        int[] mahalleler = new int[mahallelistesatirsayisii];
         String[] mahalleadlari = new String[mahallelistesatirsayisii];
         try {
             Statement st = this.getDb().connect().createStatement();
@@ -394,7 +390,13 @@ public class istekListesiGuncelleme extends javax.swing.JFrame {
         int say7 = 0;
         for (int k = 0; k < toplammsayac; k++) {
             {
-                listele[say7][8] = String.valueOf(toplammaliyetler[k]);
+                if (listele[say7][6].equals("Tamamlandı")) {
+                    listele[say7][8] = String.valueOf(toplammaliyetler[k]);
+
+                } else {
+                    listele[say7][8] = "Tamamlanmadı";
+                }
+
                 say7++;
             }
         }
@@ -435,15 +437,14 @@ public class istekListesiGuncelleme extends javax.swing.JFrame {
         table.setRowHeight(30);
         table.setGridColor(Color.BLUE);
         table.setBackground(Color.WHITE);
-        
+
         Container con = getContentPane();
         con.setLayout(null);
         etiket = new JLabel("Değişiklikleri kaydetmek için Güncelle butonuna basınız..");
-        etiket.setBounds(6, 2, 600, 40);
+        etiket.setBounds(80, 15, 600, 40);
         con.add(etiket);
 
         //x eksenine uzaklık,y ye uzaklık,yatay uzunluğu, dikey uzunluğu
-      
         table.setBounds(15, 100, 700, 600);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         JScrollPane sp = new JScrollPane(table);
@@ -452,7 +453,7 @@ public class istekListesiGuncelleme extends javax.swing.JFrame {
         this.pack();
         setContentPane(con);
         this.setSize(1500, 1000);
-        
+
         table.getTableHeader().setResizingAllowed(false);
         table.getTableHeader().setReorderingAllowed(false);
     }
@@ -504,7 +505,7 @@ public class istekListesiGuncelleme extends javax.swing.JFrame {
 
     private void guncelleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guncelleActionPerformed
         int secilensatir = table.getSelectedRow(); //0 dan başlyor satır ve sütunlar.
-       
+
         String veri = (String) table.getValueAt(secilensatir, 0);
 
         try {
@@ -514,6 +515,8 @@ public class istekListesiGuncelleme extends javax.swing.JFrame {
         } catch (SQLException ex) {
             ex.getMessage();
         }
+
+
     }//GEN-LAST:event_guncelleActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

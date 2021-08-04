@@ -171,9 +171,6 @@ public class personelGiris extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_girisbtnActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

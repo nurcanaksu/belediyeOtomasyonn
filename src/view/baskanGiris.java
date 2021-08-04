@@ -11,15 +11,8 @@ import java.sql.Statement;
 import javax.swing.JOptionPane;
 import model.DBConnection;
 
-/**
- *
- * @author nurcan
- */
 public class baskanGiris extends javax.swing.JFrame {
 
-    /**
-     * Creates new form baskanGiris
-     */
     public baskanGiris() {
         initComponents();
     }
@@ -160,11 +153,6 @@ public class baskanGiris extends javax.swing.JFrame {
             System.out.println(e.getMessage());
         }
     }//GEN-LAST:event_girisbtnActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-  
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton girisbtn;

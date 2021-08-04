@@ -1,18 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package view;
 
+
+package view;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.Font;
-import java.awt.event.ComponentEvent;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.Date;
-import javax.swing.DefaultCellEditor;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -22,7 +16,6 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableColumn;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 import model.DBConnection;
@@ -63,6 +56,7 @@ public class istekListesi extends javax.swing.JFrame {
     JTable table;
 
     TableModel tablemodel;
+
     public void istekListesiGuncelleme() {
         int isteklistesi = 0;
         try {
@@ -88,7 +82,7 @@ public class istekListesi extends javax.swing.JFrame {
         } catch (Exception e) {
             e.getMessage();
         }
-
+        
         String[][] listele = new String[isteklistesatirsayisi][9];
 
         /*Sirayla*/
@@ -139,7 +133,7 @@ public class istekListesi extends javax.swing.JFrame {
         }
 
         int sayacistektipi = 0;
-        int[] istektiplerii = new int[istektipilistesatirsayisii]; //birimler istek listesi kadar değil mal
+        int[] istektiplerii = new int[istektipilistesatirsayisii]; 
         String[] istektipiadlari = new String[istektipilistesatirsayisii];
         try {
             Statement st = this.getDb().connect().createStatement();
@@ -189,7 +183,7 @@ public class istekListesi extends javax.swing.JFrame {
         }
 
         int sayac2 = 0;
-        int[] birimler = new int[birimlistesatirsayisii]; //birimler istek listesi kadar değil mal
+        int[] birimler = new int[birimlistesatirsayisii];
         String[] birimadlari = new String[birimlistesatirsayisii];
         try {
             Statement st = this.getDb().connect().createStatement();
@@ -239,7 +233,7 @@ public class istekListesi extends javax.swing.JFrame {
         }
 
         int mah = 0;
-        int[] mahalleler = new int[mahallelistesatirsayisii]; //birimler istek listesi kadar değil mal
+        int[] mahalleler = new int[mahallelistesatirsayisii]; 
         String[] mahalleadlari = new String[mahallelistesatirsayisii];
         try {
             Statement st = this.getDb().connect().createStatement();
@@ -396,15 +390,15 @@ public class istekListesi extends javax.swing.JFrame {
             e.getMessage();
         }
 
-        int toplammaliyet=0;
+        int toplammaliyet = 0;
         int say7 = 0;
         for (int k = 0; k < toplammsayac; k++) {
             {
                 listele[say7][8] = String.valueOf(toplammaliyetler[k]);
                 say7++;
-                toplammaliyet= toplammaliyet+toplammaliyetler[k];
+                toplammaliyet = toplammaliyet + toplammaliyetler[k];
             }
-           
+
         }
 
         String[] ilkdizi = new String[9];
@@ -419,7 +413,7 @@ public class istekListesi extends javax.swing.JFrame {
         ilkdizi[7] = "Yaklaşık Maliyet";
         ilkdizi[8] = "Toplam Maliyet";
 
-         tablemodel = new DefaultTableModel(listele, ilkdizi) {
+        tablemodel = new DefaultTableModel(listele, ilkdizi) {
 
             @Override
             public boolean isCellEditable(int row, int column) {
@@ -427,16 +421,14 @@ public class istekListesi extends javax.swing.JFrame {
                 return false;
             }
 
-            @Override //toplam maliyetin yazdığı tek kolonu yazdır burada..
+            @Override 
             public void setValueAt(Object aValue, int row, int column) {
-                super.setValueAt(aValue, row, column); //To change body of generated methods, choose Tools | Templates.
+                super.setValueAt(aValue, row, column);  
             }
 
         };
 
         table = new JTable(tablemodel);
-        /*TableColumn col = table.getColumnModel().getColumn(6);
-         col.setCellEditor(new DefaultCellEditor(combo));*/
         table.setModel(tablemodel);
 
         /*TABLE CSS*/
@@ -455,25 +447,18 @@ public class istekListesi extends javax.swing.JFrame {
         etiket.setFont(new Font("Segoe UI", Font.BOLD, 45));
         con.add(etiket);
 
-        
-        
-        label= new JLabel("Toplam:");
-        label.setBounds(1030,490,600,40);
+        label = new JLabel("Toplam:");
+        label.setBounds(1030, 490, 600, 40);
         label.setFont(new Font("Segoe UI", Font.BOLD, 15));
         con.add(label);
-        
-        label2= new JLabel();
-        String sum= String.valueOf(toplammaliyet);
-        label2.setText(sum);
-        label2.setBounds(1100,490,800,40);
+
+        label2 = new JLabel();
+        String sum = String.valueOf(toplammaliyet);
+        label2.setText(sum + " TL");
+        label2.setBounds(1100, 490, 800, 40);
         label2.setFont(new Font("Segoe UI", Font.BOLD, 15));
         con.add(label2);
-        
-        
-        
-        
-        
-        
+
         //y eksenine uzaklık,x ye uzaklık,yatay uzunluğu, dikey uzunluğu
         table.setBounds(15, 100, 400, 400);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -484,9 +469,6 @@ public class istekListesi extends javax.swing.JFrame {
         setContentPane(con);
         this.setSize(1520, 1000);
 
-        
-        
-        
         table.getTableHeader().setResizingAllowed(false);
         table.getTableHeader().setReorderingAllowed(false);
 
@@ -571,9 +553,9 @@ public class istekListesi extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    
+
     private void txtSearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearchKeyReleased
-         String searchKey = txtSearch.getText();
+        String searchKey = txtSearch.getText();
         TableRowSorter<DefaultTableModel> tableRowSorter = new TableRowSorter<DefaultTableModel>((DefaultTableModel) tablemodel);
         table.setRowSorter(tableRowSorter);
         tableRowSorter.setRowFilter(RowFilter.regexFilter(searchKey));
@@ -587,7 +569,7 @@ public class istekListesi extends javax.swing.JFrame {
     }//GEN-LAST:event_txtSearch2KeyReleased
 
     private void txtSearch3KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearch3KeyReleased
-       String searchKey = txtSearch3.getText();
+        String searchKey = txtSearch3.getText();
         TableRowSorter<DefaultTableModel> tableRowSorter = new TableRowSorter<DefaultTableModel>((DefaultTableModel) tablemodel);
         table.setRowSorter(tableRowSorter);
         tableRowSorter.setRowFilter(RowFilter.regexFilter(searchKey));

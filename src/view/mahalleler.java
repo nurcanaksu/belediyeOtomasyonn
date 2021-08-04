@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package view;
 
 import entity.Mahalle;
@@ -15,19 +10,13 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.DBConnection;
 
-/**
- *
- * @author nurcan
- */
 public class mahalleler extends javax.swing.JFrame {
 
-    /**
-     * Creates new form mahalleler
-     */
     DefaultTableModel model;
+
     public mahalleler() {
         initComponents();
-         tabloyudoldur();
+        tabloyudoldur();
     }
     private DBConnection db;
 
@@ -42,10 +31,8 @@ public class mahalleler extends javax.swing.JFrame {
     public void setDb(DBConnection connection) {
         this.db = connection;
     }
-    
-    
-    
-     public void tabloyudoldur() {
+
+    public void tabloyudoldur() {
         model = (DefaultTableModel) tbl.getModel();
         model.setRowCount(0);
         try {
@@ -87,7 +74,7 @@ public class mahalleler extends javax.swing.JFrame {
         return kayitlar;
 
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -229,7 +216,7 @@ public class mahalleler extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
    int idsi;
     private void secbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_secbtnActionPerformed
-     int tablo1satir = tbl.getSelectedRow();
+        int tablo1satir = tbl.getSelectedRow();
         mahalleaditxt.setText(String.valueOf(tbl.getValueAt(tablo1satir, 0)));
         String mahalleadi;
         mahalleadi = mahalleaditxt.getText();
@@ -246,7 +233,7 @@ public class mahalleler extends javax.swing.JFrame {
             e.getMessage();
         }
         idsi = id;
-        
+
     }//GEN-LAST:event_secbtnActionPerformed
 
     private void eklebtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eklebtnActionPerformed
@@ -263,14 +250,14 @@ public class mahalleler extends javax.swing.JFrame {
             }
             if (sayac != 1) {
                 st.executeUpdate("insert into mahalleler(mahalle_adi) values ('"
-                    + mahalleaditxt.getText() + "')");
+                        + mahalleaditxt.getText() + "')");
                 tabloyudoldur();
                 lbl.setText("Mahalle başarılı bir şekilde eklendi");
             }
         } catch (Exception e) {
             e.getMessage();
         }
-        
+
     }//GEN-LAST:event_eklebtnActionPerformed
 
     private void guncellebtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guncellebtnActionPerformed
@@ -286,7 +273,7 @@ public class mahalleler extends javax.swing.JFrame {
     }//GEN-LAST:event_guncellebtnActionPerformed
 
     private void silbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_silbtnActionPerformed
-         try {
+        try {
             Statement st = this.db.connect().createStatement();
             st.executeUpdate("delete from mahalleler where mahalle_id=" + idsi);
             tabloyudoldur();
@@ -298,7 +285,6 @@ public class mahalleler extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton eklebtn;
